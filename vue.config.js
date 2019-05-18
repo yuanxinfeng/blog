@@ -10,7 +10,7 @@ const name = "vue blog"; // page title
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
-const port = 9528; // dev port
+const port = 9999; // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -32,16 +32,16 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    proxy: {
+      "/api": {
+        target: process.env.VUE_APP_API,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
     }
-    // proxy: {
-    // "/api": {
-    //   target: process.env.VUE_APP_API,
-    //   changeOrigin: true,
-    //   pathRewrite: {
-    //     "^/api": ""
-    //   }
-    // }
-    // },
   },
   configureWebpack: () => {
     const cof = {

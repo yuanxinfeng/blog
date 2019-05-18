@@ -1,64 +1,77 @@
 <template>
   <div class="app-container">
-    <Card class="card" v-for="(item, index) in posts" :key="index">
-      <span class="title">{{ item.title }}</span>
-      <span class="content">{{ item.content }}</span>
+    <div class="card" v-for="(item, index) in article_list" :key="index">
+      <span class="title">{{ item.article_title }}</span>
+      <span class="content">{{ item.article_desc }}</span>
       <div class="footer"></div>
-    </Card>
+    </div>
+    <Paginator
+      :cur_page="Number(pagination.current_page)"
+      :page_size="Number(pagination.page_size)"
+      :total="Number(pagination.total)"
+      @jump="jump"
+    ></Paginator>
   </div>
 </template>
 <script>
-import { Card } from "iview";
-import { getPosts } from "@/api/posts";
+import { getArticles } from "@/api/posts";
+import Paginator from "@/components/Paginator";
 export default {
   data() {
     return {
-      posts: [
-        {
-          id: "",
-          title: "",
-          content: "",
-          label: [
-            {
-              id: "",
-              title: ""
-            }
-          ],
-          creatTime: "",
-          read: ""
-        }
-      ]
+      article_list: [],
+      pagination: {
+        current_page: 1,
+        page_size: 10,
+        total: 100
+      }
     };
   },
   components: {
-    Card
+    Paginator
   },
   created() {
     this.$nextTick(() => {
-      getPosts().then(res => {
-        this.posts = res.posts;
-      });
+      this.get_article();
     });
   },
   mounted() {
     console.log(1111);
   },
-  methods: {}
+  methods: {
+    get_article() {
+      getArticles(this.pagination).then(res => {
+        this.article_list = res.list;
+        this.pagination = res.pagination;
+      });
+    },
+    jump(num) {
+      this.pagination.current_page = Number(num);
+      this.get_article();
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
-  padding: 15px;
-  .ivu-card-body {
-    padding: 0px 0px 28px 0;
+  border: #ebebeb 1px solid;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 3px;
+  height: 150px;
+  padding-top: 5px;
+  cursor: default;
+  &:hover {
+    box-shadow: 0px 0px 3px 3px #e6e6e6;
+    transition: all 0.5s;
   }
   .title {
     display: block;
     border-bottom: 1px solid #e8eaec;
     line-height: 1;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 22px;
     padding: 5px;
   }
   .content {

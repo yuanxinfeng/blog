@@ -9,5 +9,12 @@
   max-height: 1000px;
   width: 66.66666%;
   float: left;
+  padding: 10px;
+  /* 小于767px */
+  @media only screen and (max-width: 767px) {
+    & {
+      width: 100%;
+    }
+  }
 }
 </style>

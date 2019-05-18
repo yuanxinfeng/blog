@@ -1,3 +1,24 @@
-.app-container{
-    padding: 10px;
+@import "./transition.scss";
+
+body {
+  margin: 0 0 0 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+.app-container {
+  padding-bottom: 20px;
+  margin-top: 64px;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <header-bar></header-bar>
-    <div class="content">
+    <div class="main-container">
       <app-main></app-main>
       <right-bar></right-bar>
     </div>
@@ -22,10 +22,8 @@ export default {
 <style lang="scss" scoped>
 .layout {
   position: relative;
-  .content {
-    padding: 10px;
+  .main-container {
     overflow: hidden;
-    margin-top: 80px;
   }
 }
 </style>

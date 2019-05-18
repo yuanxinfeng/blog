@@ -1,8 +1,9 @@
 import request from "@/utils/request";
 
-export function getPosts() {
+export function getArticles(data) {
   return request({
-    url: "api/getPosts",
-    method: "post"
+    url: "api/article/list",
+    method: "get",
+    params: data
   });
 }
