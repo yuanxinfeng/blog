@@ -1,8 +1,6 @@
 <template>
   <div class="rigth-bar">
-    <div class="right-header">
-
-    </div>
+    <div class="right-header"></div>
   </div>
 </template>
 <style lang="scss" scoped>

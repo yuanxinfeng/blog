@@ -10,14 +10,27 @@ export const constantRouterMap = [
   {
     path: "/",
     component: Layout,
-    redirect: "dashboard",
+    redirect: "home",
     hidden: true,
     children: [
       {
-        path: "dashboard",
-        component: () => import("@/views/dashboard/index"),
+        path: "home",
+        component: () => import("@/views/home/index"),
         name: "首页",
         meta: { title: "首页", icon: "index" }
+      }
+    ]
+  },
+  {
+    path: "/article",
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: "",
+        component: () => import("@/views/article/index"),
+        name: "文章",
+        meta: { title: "文章", icon: "index" }
       }
     ]
   }
@@ -34,6 +47,13 @@ export const constantRouterMap = [
 ];
 export default new Router({
   mode: "history",
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  // scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap,
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      };
+    }
+  }
 });

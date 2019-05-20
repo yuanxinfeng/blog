@@ -3,6 +3,7 @@
     <div class="card" v-for="(item, index) in article_list" :key="index">
       <span class="title">{{ item.article_title }}</span>
       <span class="content">{{ item.article_desc }}</span>
+      <router-link :to="{ path: 'article', query: { id: item._id }}">阅读全文</router-link>
       <div class="footer"></div>
     </div>
     <Paginator
@@ -14,7 +15,7 @@
   </div>
 </template>
 <script>
-import { getArticles } from "@/api/posts";
+import { getArticles } from "@/api/article";
 import Paginator from "@/components/Paginator";
 export default {
   data() {
