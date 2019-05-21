@@ -72,6 +72,17 @@ export function formatTime(time, option) {
   }
 }
 
+export function formatDuring(mss) {
+  mss = new Date().getTime() - mss;
+  let days = parseInt(mss / (1000 * 60 * 60 * 24));
+  let hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = (mss % (1000 * 60)) / 1000;
+  return (
+    days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + seconds + " 秒 "
+  );
+}
+
 export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result;
 

@@ -6,7 +6,6 @@ const service = axios.create({
   timeout: 50000, // 请求超时时间
   withCredentials: true
 });
-
 // request拦截器
 service.interceptors.request.use(
   config => {

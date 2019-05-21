@@ -25,22 +25,24 @@ export default {
       s: "#titleAnchor-"
     };
   }
-  // mounted
 };
 </script>
 <style lang="scss">
 .nav-list {
   margin-left: 20px;
   list-style: square;
-  padding-left: 0;
+  padding-left: 15px;
   li {
     list-style: square;
   }
   a {
     display: block;
     color: #333;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     &:link,
     &:visited {
       text-decoration: none;

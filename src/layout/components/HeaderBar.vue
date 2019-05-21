@@ -71,9 +71,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$nav_backgroundcolor: #fff;
+$nav_fontcolor: rgb(51, 63, 71);
+$nav_hoverfontcolor: rgb(47, 177, 216);
 .isM {
-  background: rgba(1, 1, 1, 0.8) !important;
-  border-bottom: 1px solid rgba(1, 1, 1, 0.8) !important;
+  border-bottom: 1px solid #fff !important;
 }
 .app_header {
   position: fixed;
@@ -82,7 +84,7 @@ export default {
   height: 64px;
   z-index: 2;
   top: 0;
-  background: #fff;
+  background: $nav_backgroundcolor;
   border-bottom: 1px solid #ebebeb;
   .app_head_wrapper {
     position: relative;
@@ -121,7 +123,7 @@ export default {
           display: block;
           margin: 10px auto;
           position: relative;
-          background-color: rgb(19, 72, 151);
+          background-color: rgb(47, 177, 216);
           -moz-border-radius: 10px;
           -webkit-border-radius: 10px;
           border-radius: 10px;
@@ -151,9 +153,9 @@ export default {
       ul {
         clear: both;
         display: none;
-        background: rgba(1, 1, 1, 0.8);
+        background: $nav_backgroundcolor;
         width: 100%;
-        padding-bottom: 40px;
+        padding-bottom: 10px;
       }
       & li {
         height: 40px;
@@ -162,9 +164,6 @@ export default {
         display: block;
         overflow: hidden;
         text-align: center;
-        a {
-          color: #fff;
-        }
       }
     }
     /* nav */
@@ -176,7 +175,6 @@ export default {
     nav {
       width: 1100px;
       margin: auto;
-      color: #999;
       line-height: 37px;
       float: left;
       ul {
@@ -189,7 +187,10 @@ export default {
           padding: 0px 20px;
           cursor: pointer;
           a {
-            color: rgb(123, 170, 201);
+            color: $nav_fontcolor;
+            &:hover {
+              color: $nav_hoverfontcolor;
+            }
           }
         }
       }
@@ -201,6 +202,12 @@ export default {
         display: block;
         width: 100%;
         z-index: 99999;
+        a {
+          color: $nav_fontcolor;
+          &:hover {
+            color: $nav_hoverfontcolor;
+          }
+        }
       }
       .topnav {
         display: none;

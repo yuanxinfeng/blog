@@ -33,17 +33,16 @@ export default {
   },
   created() {
     this.$nextTick(() => {
+      this.$loading.show();
       this.get_article();
     });
-  },
-  mounted() {
-    console.log(1111);
   },
   methods: {
     get_article() {
       getArticles(this.pagination).then(res => {
         this.article_list = res.list;
         this.pagination = res.pagination;
+        this.$loading.hide();
       });
     },
     jump(num) {

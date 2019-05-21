@@ -2,33 +2,27 @@
   <div>
     <div class="articles">
       <div class="infos">
-        <div class="newsview">
-          <p class="intitle"></p>
-          <h3 class="news_title">{{article.article_title}}</h3>
-          <div class="news_author">
-            <span v-if="article.author">
-              <i class="fa fa-user-o au01" aria-hidden="true"></i>
-              {{article.author}}
-            </span>
-            <span>
-              <i class="fa fa-clock-o au02" aria-hidden="true"></i>
-              {{article.article_update_time | formatDate}}
-            </span>
-            <span class="au03">
-              获得
-              <b>{{article.ready_number}}</b>次围观
-            </span>
-          </div>
-          <div class="tags">
-            <a href="/" v-for="tag in article.tags" :key="tag.tagId">{{tag.name}}</a>
-          </div>
-          <div class="news_about">
-            <div v-html="article_content" class="markdown-body"></div>
-          </div>
+        <p class="intitle"></p>
+        <h3 class="news_title">{{article.article_title}}</h3>
+        <div class="news_line">
+          <span>
+            <i class="fa fa-clock-o time" aria-hidden="true"></i>
+            {{article.article_update_time | formatDate}}
+          </span>
+          <span class="ready">
+            获得
+            <b>{{article.ready_number}}</b>次围观
+          </span>
+        </div>
+        <div class="tags">
+          <a href="/" v-for="tag in article.tags" :key="tag.tagId">{{tag.name}}</a>
+        </div>
+        <div class="news_about">
+          <div v-html="article_content" class="markdown-body"></div>
         </div>
       </div>
     </div>
-    <div class="markTitle" v-if="markdownList.length > 0">
+    <div :class="titleClass" v-if="markdownList.length > 0">
       <p>文章目录:</p>
       <div class="markTitleList">
         <markDownTitle
@@ -60,10 +54,11 @@ export default {
       markdownTitleLen: 0,
       highlightIndex: 0,
       article: {},
+      titleClass: ["markTitle"],
       article_content: "",
       markDownTitleHeight: 0,
       curLiHeight: 0, //导航当前li的高度
-      curLiTop: 0 //距顶部的距离
+      curLiTop: 25 //距顶部的距离
     };
   },
   computed: {
@@ -83,10 +78,15 @@ export default {
     this.$nextTick(() => {
       this.$store.dispatch("getRightBar", false);
     });
-    getArticle(id).then(res => {
-      this.article = res;
-      this.getMKArray();
-    });
+    this.$loading.show();
+    getArticle(id)
+      .then(res => {
+        this.article = res;
+        this.getMKArray();
+      })
+      .then(() => {
+        this.$loading.hide();
+      });
   },
   mounted() {
     window.addEventListener("scroll", this.scrollHandler);
@@ -120,6 +120,15 @@ export default {
       }
     },
     scrollHandler(event, position) {
+      let clientHeight = document.documentElement.clientHeight;
+      if (
+        clientHeight >=
+        document.querySelector("footer").getBoundingClientRect().top
+      ) {
+        this.titleClass.push("markTitles");
+      } else {
+        this.titleClass = ["markTitle"];
+      }
       if (this.markdownList.length === 0) return;
       const idPrefix = "titleAnchor-";
       const distance = 20;
@@ -133,21 +142,19 @@ export default {
           domTitle
         });
       }
-      console.log(list.filter(item => item.y > distance))
       let readingVO = list
-        .filter(item => item.y > distance)
+        .filter(item => item.y < distance)
         .sort((a, b) => {
-          return a.y - b.y;
+          return b.y - a.y;
         })[0];
-        console.log(readingVO)
-      if (readingVO && readingVO.domTitle && readingVO.index!==0) {
+      if (readingVO && readingVO.domTitle) {
         // 对所有的y值为正标的题，按y值升序排序。第一个标题就是当前处于阅读中的段落的标题。也即要高亮的标题
-        this.highlightIndex = !readingVO ? 0 : readingVO.index-1;
+        this.highlightIndex = readingVO.index;
         this.curLiHeight = readingVO.domTitle.offsetHeight;
         let toTop = readingVO.domTitle.offsetTop - this.markDownTitleHeight;
         document.querySelector(".markTitleList").scrollTop =
           toTop + this.markDownTitleHeight / 2;
-        this.curLiTop = readingVO.index == 1? this.curLiTop: readingVO.domTitle.offsetTop - this.curLiHeight;
+        this.curLiTop = readingVO.domTitle.offsetTop;
       }
     }
   },
@@ -162,15 +169,16 @@ export default {
 .markTitle {
   position: fixed;
   left: 67%;
-  top: 65px;
-  bottom: 50px;
+  top: 70px;
+  bottom: 0px;
   width: 25%;
+}
+.markTitles {
+  position: absolute;
 }
 
 .markTitleList {
-  position: absolute;
   top: 35px;
-  bottom: 100px;
   overflow-y: scroll;
 }
 
@@ -188,9 +196,6 @@ export default {
   background: #fff;
   overflow: hidden;
   margin-top: 20px;
-}
-
-.newsview {
   padding: 20px;
 }
 
@@ -205,33 +210,23 @@ export default {
   color: #333;
 }
 
-.news_author {
+.news_line {
   width: 100%;
   color: #999;
   line-height: 18px;
-}
-
-.news_author span {
-  margin-right: 10px;
-}
-
-.au01 {
-  color: #e06c75;
-  padding: 0 5px;
-}
-
-.au02 {
-  color: #333333;
-  padding: 0 5px;
-}
-
-.au03 b {
-  color: #333;
-  padding: 0 5px;
-}
-
-.au04 {
-  font-weight: normal;
+  span {
+    margin-right: 10px;
+  }
+  .time {
+    color: #333333;
+    padding: 0 5px;
+  }
+  .ready {
+    b {
+      color: #333;
+      padding: 0 5px;
+    }
+  }
 }
 
 .news_about {
@@ -241,25 +236,12 @@ export default {
   margin: 20px auto 15px auto;
   line-height: 23px;
   background: none repeat 0 0 #f6f6f6;
-}
-
-.news_about strong {
-  color: #38485a;
-  font-weight: 400 !important;
-  font-size: 13px;
-  padding-right: 8px;
-}
-
-.news_content {
-  line-height: 24px;
-  font-size: 14px;
-}
-
-.news_content p {
-  overflow: hidden;
-  padding-bottom: 4px;
-  padding-top: 6px;
-  word-wrap: break-word;
+  strong {
+    color: #38485a;
+    font-weight: 400 !important;
+    font-size: 13px;
+    padding-right: 8px;
+  }
 }
 
 .tags a {
