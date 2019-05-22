@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from "../store";
 import Router from "vue-router";
 
 Vue.use(Router);
@@ -45,7 +46,7 @@ export const constantRouterMap = [
   //   hidden: true
   // }
 ];
-export default new Router({
+const router = new Router({
   mode: "history",
   // scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap,
@@ -57,3 +58,10 @@ export default new Router({
     }
   }
 });
+
+router.beforeEach((to, from, next) => {
+  // 跳转路由 把移动端的导航初始化
+  store.dispatch("getMobileOpenNav", false);
+  next();
+});
+export default router;

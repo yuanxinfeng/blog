@@ -1,14 +1,14 @@
 <template>
-  <div :class="['app_header', isOpen ? 'isM' : '']">
+  <div :class="['app_header', isMobileOpenNav ? 'isM' : '']">
     <div class="app_head_wrapper">
       <div class="logo"></div>
       <div class="mnav">
-        <div :class="['nav_btn', isOpen ? 'open' : '']" @click="changeNav">
+        <div :class="['nav_btn', isMobileOpenNav ? 'open' : '']" @click="changeNav">
           <div class="bar"></div>
           <div class="bar"></div>
           <div class="bar"></div>
         </div>
-        <ul style="display:block" v-if="isOpen">
+        <ul style="display:block" v-if="isMobileOpenNav">
           <li>
             <router-link to="/">首页</router-link>
           </li>
@@ -57,15 +57,19 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
       isOpen: false
     };
   },
+  computed:{
+    ...mapGetters(['isMobileOpenNav'])
+  },
   methods: {
     changeNav() {
-      this.isOpen = !this.isOpen;
+      this.$store.dispatch('getMobileOpenNav',!this.isMobileOpenNav);
     }
   }
 };
