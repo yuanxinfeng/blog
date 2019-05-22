@@ -1,14 +1,12 @@
 <template>
   <footer>
-    <div>
-      <p>参考网址：</p>
-      <div class="links">
-        <a target="_blank" href="https://cnodejs.org/">CNode技术社区</a>
-        <a target="_blank" href="https://cn.vuejs.org/">Vue.js官网</a>
+    <div class="container">
+      <div class="copyright">
+        <p>Copyright © 2018-2019 SegmentFault. 当前呈现版本 1.02.17</p>
       </div>
-    </div>
-    <div class="online-time">
-      <p>本站已运行：{{time}}</p>
+      <div class="online-time">
+        <p>本站已运行：{{ time }}</p>
+      </div>
     </div>
   </footer>
 </template>
@@ -45,34 +43,33 @@ export default {
 
 <style lang="scss" scoped>
 footer {
-  background: rgb(38, 50, 56);
-  color: #fff;
+  background: #f7f7f7;
+  color: #666;
   height: 220px;
+  display: table;
   position: relative;
+  .copyright{
+    font-size: 13px;
+    text-align: center;    
+    padding: 20px 10px 10px 10px;
+    @media only screen and (max-width: 768px) {
+      & {
+        padding: 0 10px 10px 10px !important;
+      }
+    }
+  }
   .online-time {
     width: 350px;
     position: absolute;
     bottom: 0px;
     left: 50%;
     margin-left: -175px;
+    p {
+      font-size: 16px;
+      padding-bottom: 10px;
+      text-align: center;
+    }
   }
-}
-
-div {
-  padding-bottom: 20px;
-}
-
-footer div:last-child {
-  padding-bottom: 0;
-}
-
-p {
-  font-size: 16px;
-  padding-bottom: 10px;
-}
-
-a {
-  margin-right: 20px;
 }
 @media screen and (max-width: 480px) {
   footer {

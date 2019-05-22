@@ -1,10 +1,16 @@
 <template>
   <div class="app-container">
     <div class="card" v-for="(item, index) in article_list" :key="index">
-      <span class="title">{{ item.article_title }}</span>
-      <span class="content">{{ item.article_desc }}</span>
-      <router-link :to="{ path: 'article', query: { id: item._id }}">阅读全文</router-link>
-      <div class="footer"></div>
+      <h3 class="title">{{ item.article_title }}</h3>
+      <div class="content">
+        <span>{{ item.article_desc | subString }}</span>
+        <router-link :to="{ path: 'article', query: { id: item._id }}">阅读全文</router-link>
+      </div>
+      <div class="footer">
+        <span class="info-item">标签：{{ item.article_tags | joinString }}</span>
+        <span class="info-item">阅读人数：{{ item.article_ready }}</span>
+        <span class="info-item">发布时间：{{ item.article_create_time | formatMsgTime }}</span>
+      </div>
     </div>
     <Paginator
       :cur_page="Number(pagination.current_page)"
@@ -17,6 +23,7 @@
 <script>
 import { getArticles } from "@/api/article";
 import Paginator from "@/components/Paginator";
+import { formatMsgTime } from "@/utils";
 export default {
   data() {
     return {
@@ -30,6 +37,21 @@ export default {
   },
   components: {
     Paginator
+  },
+  filters: {
+    subString: string => {
+      return (string = string.substring(0, string.length / 2) + "...");
+    },
+    joinString: arr => {
+      return arr
+        .map(a => {
+          return a.tags_name;
+        })
+        .join(",");
+    },
+    formatMsgTime: time => {
+      return formatMsgTime(time);
+    }
   },
   created() {
     this.$nextTick(() => {
@@ -58,8 +80,8 @@ export default {
   border: #ebebeb 1px solid;
   margin-top: 5px;
   padding: 10px;
+  display: table;
   border-radius: 3px;
-  height: 150px;
   padding-top: 5px;
   cursor: default;
   &:hover {
@@ -67,10 +89,7 @@ export default {
     transition: all 0.5s;
   }
   .title {
-    display: block;
     border-bottom: 1px solid #e8eaec;
-    line-height: 1;
-    font-weight: 600;
     font-size: 22px;
     padding: 5px;
   }
@@ -84,7 +103,7 @@ export default {
   }
   .footer {
     float: right;
-    font-size: 15px;
+    font-size: 12px;
     color: #999;
     margin-top: 5px;
   }

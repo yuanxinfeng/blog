@@ -15,3 +15,11 @@ export function getArticle(id) {
     params: { id: id }
   });
 }
+
+export function addArticleReady(id) {
+  return request({
+    url: "api/article/addReady",
+    method: "get",
+    params: { id: id }
+  });
+}

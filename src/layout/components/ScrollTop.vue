@@ -58,12 +58,14 @@ export default {
   text-decoration: none;
   width: 2.5em;
   font-size: 13px;
+  border-radius: 15px 0 0 15px;
   cursor: pointer;
 }
 @media screen and (max-width: 640px) {
   .c-back-top {
     left: auto;
     right: 10px;
+    border-radius: 2px !important;
   }
 }
 
@@ -71,6 +73,7 @@ export default {
   .c-back-top {
     left: auto;
     right: -2px;
+    border-radius: 2px !important;
   }
 }
 </style>

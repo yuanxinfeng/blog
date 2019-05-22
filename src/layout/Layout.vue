@@ -26,8 +26,8 @@ export default {
     FooterBar,
     ScrollTop
   },
-  computed:{
-    ...mapGetters(['isRightBar'])
+  computed: {
+    ...mapGetters(["isRightBar"])
   }
 };
 </script>
@@ -36,6 +36,11 @@ export default {
   position: relative;
   .main-container {
     overflow: hidden;
+    @media only screen and (min-width: 960px) {
+      & {
+        padding: 0 40px 0 40px !important;
+      }
+    }
   }
 }
 </style>

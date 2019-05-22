@@ -3,19 +3,22 @@
     <div class="articles">
       <div class="infos">
         <p class="intitle"></p>
-        <h3 class="news_title">{{article.article_title}}</h3>
+        <h3 class="news_title">{{ article.article_title }}</h3>
         <div class="news_line">
           <span>
             <i class="fa fa-clock-o time" aria-hidden="true"></i>
-            {{article.article_update_time | formatDate}}
+            {{ article.article_update_time | formatDate }}
           </span>
           <span class="ready">
             获得
-            <b>{{article.ready_number}}</b>次围观
+            <b>{{ article.article_ready }}</b>
+            次围观
           </span>
         </div>
         <div class="tags">
-          <a href="/" v-for="tag in article.tags" :key="tag.tagId">{{tag.name}}</a>
+          <a v-for="tag in article.article_tags" :key="tag._id">{{ 
+            tag.tags_name
+             }}</a>
         </div>
         <div class="news_about">
           <div v-html="article_content" class="markdown-body"></div>
@@ -42,7 +45,7 @@ import getMKTitles from "@/utils/getMKTitles";
 import "../../assets/style/atom.min.css";
 import "../../assets/style/github-markdown.css";
 import markDownTitle from "@/components/markDownTitle";
-import { getArticle } from "@/api/article";
+import { getArticle, addArticleReady } from "@/api/article";
 import { parseTime } from "@/utils/";
 
 import markdown from "@/utils/marked";
@@ -79,14 +82,16 @@ export default {
       this.$store.dispatch("getRightBar", false);
     });
     this.$loading.show();
-    getArticle(id)
-      .then(res => {
-        this.article = res;
-        this.getMKArray();
-      })
-      .then(() => {
-        this.$loading.hide();
-      });
+    addArticleReady(id).then(() => {
+      getArticle(id)
+        .then(res => {
+          this.article = res;
+          this.getMKArray();
+        })
+        .then(() => {
+          this.$loading.hide();
+        });
+    });
   },
   mounted() {
     window.addEventListener("scroll", this.scrollHandler);
@@ -119,7 +124,7 @@ export default {
         });
       }
     },
-    scrollHandler(event, position) {
+    scrollHandler() {
       let clientHeight = document.documentElement.clientHeight;
       if (
         clientHeight >=
