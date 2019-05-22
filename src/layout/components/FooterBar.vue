@@ -45,6 +45,7 @@ export default {
 footer {
   background: #f7f7f7;
   color: #666;
+  width: 100%;
   height: 220px;
   display: table;
   position: relative;
