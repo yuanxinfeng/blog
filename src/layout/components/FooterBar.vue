@@ -2,7 +2,7 @@
   <footer>
     <div class="container">
       <div class="copyright">
-        <p>Copyright © 2018-2019 SegmentFault. 当前呈现版本 1.02.17</p>
+        <p>Copyright © 2018-2019 YuanXinFeng. 当前呈现版本 1.02.17</p>
       </div>
       <div class="online-time">
         <p>本站已运行：{{ time }}</p>
@@ -53,9 +53,9 @@ footer {
     font-size: 13px;
     text-align: center;    
     padding: 20px 10px 10px 10px;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 480px) {
       & {
-        padding: 0 10px 10px 10px !important;
+        padding: 2px 10px 10px 10px !important;
       }
     }
   }

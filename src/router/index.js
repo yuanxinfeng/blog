@@ -59,9 +59,20 @@ const router = new Router({
   }
 });
 
+import NProgress from "nprogress"; // progress bar
+import "nprogress/nprogress.css"; // progress bar style
+
+NProgress.configure({
+  showSpinner: false
+}); // NProgress Configuration
 router.beforeEach((to, from, next) => {
+  NProgress.start();
   // 跳转路由 把移动端的导航初始化
   store.dispatch("getMobileOpenNav", false);
   next();
+});
+
+router.afterEach(() => {
+  NProgress.done(); // finish progress bar
 });
 export default router;
