@@ -29,7 +29,7 @@ function getMKTitles(mkContent) {
     });
 
   // 去掉title
-  if (nav[0].level === 1) {
+  if (nav.length > 0 && nav[0].level === 1) {
     nav.shift();
   }
 
