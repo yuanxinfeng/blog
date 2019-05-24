@@ -38,79 +38,38 @@ export function parseTime(time) {
   }
 }
 
-export function formatTime(time, option) {
-  time = +time * 1000;
-  const d = new Date(time);
-  const now = Date.now();
-
-  const diff = (now - d) / 1000;
-
-  if (diff < 30) {
-    return "刚刚";
-  } else if (diff < 3600) {
-    // less 1 hour
-    return Math.ceil(diff / 60) + "分钟前";
-  } else if (diff < 3600 * 24) {
-    return Math.ceil(diff / 3600) + "小时前";
-  } else if (diff < 3600 * 24 * 2) {
-    return "1天前";
-  }
-  if (option) {
-    return parseTime(time, option);
-  } else {
-    return (
-      d.getMonth() +
-      1 +
-      "月" +
-      d.getDate() +
-      "日" +
-      d.getHours() +
-      "时" +
-      d.getMinutes() +
-      "分"
-    );
-  }
-}
-
 export function formatMsgTime(timespan) {
-  let dateTime = new Date(timespan);
+  let now = new Date().getTime(),
+    diffValue = now - parseInt(timespan),
+    result = "",
+    minute = 1000 * 60,
+    hour = minute * 60,
+    day = hour * 24,
+    month = day * 30,
+    year = month * 12,
+    _year = diffValue / year,
+    _month = diffValue / month,
+    _week = diffValue / (7 * day),
+    _day = diffValue / day,
+    _hour = diffValue / hour,
+    _min = diffValue / minute;
 
-  let year = dateTime.getFullYear();
-  let month = dateTime.getMonth() + 1;
-  let day = dateTime.getDate();
-  let hour = dateTime.getHours();
-  let minute = dateTime.getMinutes();
-  let now = new Date();
-  let now_new = Date.parse(now.toDateString()); //typescript转换写法
-
-  let milliseconds = 0;
-  let timeSpanStr;
-
-  milliseconds = now_new - timespan;
-
-  if (milliseconds <= 1000 * 60 * 1) {
-    timeSpanStr = "刚刚";
-  } else if (1000 * 60 * 1 < milliseconds && milliseconds <= 1000 * 60 * 60) {
-    timeSpanStr = Math.round(milliseconds / (1000 * 60)) + "分钟前";
-  } else if (
-    1000 * 60 * 60 * 1 < milliseconds &&
-    milliseconds <= 1000 * 60 * 60 * 24
-  ) {
-    timeSpanStr = Math.round(milliseconds / (1000 * 60 * 60)) + "小时前";
-  } else if (
-    1000 * 60 * 60 * 24 < milliseconds &&
-    milliseconds <= 1000 * 60 * 60 * 24 * 15
-  ) {
-    timeSpanStr = Math.round(milliseconds / (1000 * 60 * 60 * 24)) + "天前";
-  } else if (
-    milliseconds > 1000 * 60 * 60 * 24 * 15 &&
-    year == now.getFullYear()
-  ) {
-    timeSpanStr = month + "-" + day + " " + hour + ":" + minute;
+  if (_year >= 1) {
+    result = parseInt(_year) + "年前";
+  } else if (_month >= 1) {
+    result = parseInt(_month) + "个月前";
+  } else if (_week >= 1) {
+    result = parseInt(_week) + "周前";
+  } else if (_day >= 1) {
+    result = parseInt(_day) + "天前";
+  } else if (_hour >= 1) {
+    result = parseInt(_hour) + "个小时前";
+  } else if (_min >= 1) {
+    result = parseInt(_min) + "分钟前";
   } else {
-    timeSpanStr = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+    result = "刚刚";
   }
-  return timeSpanStr;
+  return result;
 }
 
 export function formatDuring(mss) {
