@@ -57,19 +57,19 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       isOpen: false
     };
   },
-  computed:{
-    ...mapGetters(['isMobileOpenNav'])
+  computed: {
+    ...mapGetters(["isMobileOpenNav"])
   },
   methods: {
     changeNav() {
-      this.$store.dispatch('getMobileOpenNav',!this.isMobileOpenNav);
+      this.$store.dispatch("getMobileOpenNav", !this.isMobileOpenNav);
     }
   }
 };
@@ -199,22 +199,55 @@ $nav_hoverfontcolor: rgb(47, 177, 216);
         }
       }
     }
-
-    /* 小于960px */
-    @media only screen and (max-width: 960px) {
-      .mnav {
-        display: block;
-        width: 100%;
-        z-index: 99999;
-        a {
-          color: $nav_fontcolor;
-          &:hover {
-            color: $nav_hoverfontcolor;
+  }
+  @media only screen and (max-width: 960px) {
+    & {
+      line-height: 54px !important;
+      height: 54px !important;
+      .app_head_wrapper {
+        .logo {
+          height: 54px;
+        }
+        .mnav {
+          display: block;
+          width: 100%;
+          z-index: 99999;
+          .nav_btn {
+            height: 54px;
+            width: 54px;
+            .bar {
+              height: 2px;
+              width: 35px;
+              margin: 7px auto;
+            }
+          }
+          .open {
+            .bar:nth-of-type(1) {
+              -moz-transform: translateY(9px) rotate(45deg);
+              -ms-transform: translateY(9px) rotate(45deg);
+              -webkit-transform: translateY(9px) rotate(45deg);
+              transform: translateY(9px) rotate(45deg);
+            }
+            .bar:nth-of-type(2) {
+              opacity: 0;
+            }
+            .bar:nth-of-type(3) {
+              -moz-transform: translateY(-9px) rotate(-45deg);
+              -ms-transform: translateY(-9px) rotate(-45deg);
+              -webkit-transform: translateY(-9px) rotate(-45deg);
+              transform: translateY(-9px) rotate(-45deg);
+            }
+          }
+          a {
+            color: $nav_fontcolor;
+            &:hover {
+              color: $nav_hoverfontcolor;
+            }
           }
         }
-      }
-      .topnav {
-        display: none;
+        .topnav {
+          display: none;
+        }
       }
     }
   }

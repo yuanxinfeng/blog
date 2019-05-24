@@ -21,4 +21,7 @@ html {
 .app-container {
   padding-bottom: 20px;
   margin-top: 64px;
+  @media only screen and(max-width:960px) {
+    margin-top: 54px;
+  }
 }
