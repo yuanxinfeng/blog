@@ -1,15 +1,4 @@
 <template>
-  <!-- <div class="loading" v-show="showLoading">
-    <div class="ajax-loading load-status">
-      <div class="head-space"></div>
-      <div class="loading-box">
-        <div class="la-square-jelly-box">
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </div>
-  </div>-->
   <div class="loading" v-show="showLoading">
     <div class="loader">
       <span class="dot dot_1"></span>
@@ -21,11 +10,12 @@
 </template>
 <script>
 export default {
-  data() {
-    return {};
-  },
   props: {
-    showLoading: false
+    showLoading: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   }
 };
 </script>
