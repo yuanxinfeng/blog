@@ -21,7 +21,7 @@
              }}</a>
         </div>
         <div class="news_about">
-          <div v-html="article_content" class="markdown-body"></div>
+          <div v-html="article_html" class="markdown-body"></div>
         </div>
       </div>
     </div>
@@ -48,8 +48,6 @@ import markDownTitle from "@/components/markDownTitle";
 import { getArticle, addArticleReady } from "@/api/article";
 import { parseTime } from "@/utils/";
 
-import markdown from "@/utils/marked";
-
 export default {
   data() {
     return {
@@ -58,7 +56,7 @@ export default {
       highlightIndex: 0,
       article: {},
       titleClass: ["markTitle"],
-      article_content: "",
+      article_html: "",
       markDownTitleHeight: 0,
       curLiHeight: 0, //导航当前li的高度
       curLiTop: 25 //距顶部的距离
@@ -103,12 +101,8 @@ export default {
   },
   methods: {
     getMKArray() {
-      let getMKArray = getMKTitles(this.article.article_content);
-      this.article_content = markdown(
-        this.article.article_content,
-        false,
-        true
-      );
+      let getMKArray = getMKTitles(this.article.article_markdown);
+      this.article_html = this.article.article_html;
       if (getMKArray && getMKArray.nav.length > 0) {
         this.markdownTitleFalse = true;
         this.markdownList = getMKArray.nav;
