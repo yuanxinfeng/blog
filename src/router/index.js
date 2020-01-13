@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @Author: Jasper
+ * @Github: https://github.com/yuanxinfeng
+ * @Date: 2019-05-14 17:02:33
+ * @LastEditors  : Jasper
+ * @LastEditTime : 2020-01-13 15:58:19
+ */
 import Vue from "vue";
 import store from "../store";
 import Router from "vue-router";
@@ -32,6 +40,19 @@ export const constantRouterMap = [
         component: () => import("@/views/article/index"),
         name: "文章",
         meta: { title: "文章", icon: "index" }
+      }
+    ]
+  },
+  {
+    path: "/tools",
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: "",
+        component: () => import("@/views/tools/index"),
+        name: "工具",
+        meta: { title: "工具", icon: "index" }
       }
     ]
   }

@@ -16,9 +16,9 @@
           </span>
         </div>
         <div class="tags">
-          <a v-for="tag in article.article_tags" :key="tag._id">{{ 
+          <a v-for="tag in article.article_tags" :key="tag._id">{{
             tag.tags_name
-             }}</a>
+          }}</a>
         </div>
         <div class="news_about">
           <div v-html="article_html" class="markdown-body"></div>
@@ -159,7 +159,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.scrollHandler);
-    this.$store.dispatch("getRightBar", true);
+    //this.$store.dispatch("getRightBar", true);
   }
 };
 </script>

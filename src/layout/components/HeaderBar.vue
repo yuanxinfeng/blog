@@ -3,7 +3,10 @@
     <div class="app_head_wrapper">
       <div class="logo"></div>
       <div class="mnav">
-        <div :class="['nav_btn', isMobileOpenNav ? 'open' : '']" @click="changeNav">
+        <div
+          :class="['nav_btn', isMobileOpenNav ? 'open' : '']"
+          @click="changeNav"
+        >
           <div class="bar"></div>
           <div class="bar"></div>
           <div class="bar"></div>
@@ -13,19 +16,7 @@
             <router-link to="/">首页</router-link>
           </li>
           <li>
-            <router-link to="/blogs/about">关于我</router-link>
-          </li>
-          <li>
-            <router-link to="/blogs">杂文</router-link>
-          </li>
-          <li>
-            <router-link to="/blogs/tools">工具栏</router-link>
-          </li>
-          <li>
-            <router-link to="/blogs">留言</router-link>
-          </li>
-          <li>
-            <router-link to="/blogs/search">search</router-link>
+            <router-link to="/tools">工具栏</router-link>
           </li>
         </ul>
       </div>
@@ -36,19 +27,7 @@
               <router-link to="/">首页</router-link>
             </li>
             <li>
-              <router-link to="/blogs/about">关于我</router-link>
-            </li>
-            <li>
-              <router-link to="/blogs">杂文</router-link>
-            </li>
-            <li>
-              <router-link to="/blogs/tools">工具栏</router-link>
-            </li>
-            <li>
-              <router-link to="/blogs">留言</router-link>
-            </li>
-            <li>
-              <router-link to="/blogs/search">search</router-link>
+              <router-link to="/tools">工具栏</router-link>
             </li>
           </ul>
         </nav>

@@ -1,8 +1,20 @@
+<!--
+ * @Description: 
+ * @Author: Jasper
+ * @Github: https://github.com/yuanxinfeng
+ * @Date: 2019-05-15 10:58:18
+ * @LastEditors  : Jasper
+ * @LastEditTime : 2020-01-13 16:55:21
+ -->
 <template>
   <footer>
     <div class="container">
       <div class="copyright">
-        <p>Copyright © 2018-2019 YuanXinFeng. 当前呈现版本 1.02.17</p>
+        <p>
+          Copyright © 2018-2019
+          <a href="https://yuanxinfeng.xyz" target="_blank">YuanXinFeng</a>.
+          当前呈现版本 1.02.17
+        </p>
       </div>
       <div class="online-time">
         <p>本站已运行：{{ time }}</p>
@@ -49,9 +61,9 @@ footer {
   height: 220px;
   display: table;
   position: relative;
-  .copyright{
+  .copyright {
     font-size: 13px;
-    text-align: center;    
+    text-align: center;
     padding: 20px 10px 10px 10px;
     @media only screen and (max-width: 480px) {
       & {
