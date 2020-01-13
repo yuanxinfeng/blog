@@ -4,12 +4,18 @@
       <h3 class="title">{{ item.article_title }}</h3>
       <div class="content">
         <span>{{ item.article_desc | subString }}</span>
-        <router-link :to="{ path: 'article', query: { id: item._id }}">阅读全文</router-link>
+        <router-link :to="{ path: 'article', query: { id: item._id } }"
+          >阅读全文</router-link
+        >
       </div>
       <div class="footer">
-        <span class="info-item">标签：{{ item.article_tags | joinString }}</span>
+        <span class="info-item"
+          >标签：{{ item.article_tags | joinString }}</span
+        >
         <span class="info-item">阅读人数：{{ item.article_ready }}</span>
-        <span class="info-item">发布时间：{{ item.article_create_time | formatMsgTime }}</span>
+        <span class="info-item"
+          >发布时间：{{ item.article_create_time | formatMsgTime }}</span
+        >
       </div>
     </div>
     <Paginator

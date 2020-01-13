@@ -1,14 +1,31 @@
+<!--
+ * @Description: 
+ * @Author: Jasper
+ * @Github: https://github.com/yuanxinfeng
+ * @Date: 2019-05-20 13:50:49
+ * @LastEditors  : Jasper
+ * @LastEditTime : 2020-01-13 09:16:36
+ -->
 <template>
   <div class="c-back-top" v-if="topBtn" @click="c_ScrollTop">返回顶部</div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "ScrollTop",
   data() {
     return {
       topBtn: false
     };
+  },
+  computed: {
+    ...mapGetters(["isPager"])
+  },
+  watch: {
+    isPager: function() {
+      this.c_ScrollTop();
+    }
   },
   mounted() {
     window.addEventListener("scroll", this.scrollHandler);
@@ -25,14 +42,12 @@ export default {
     },
     c_ScrollTop() {
       let timer = null;
-      let isTop = false;
       timer = setInterval(function() {
         let osTop =
           document.body.scrollTop || document.documentElement.scrollTop;
         let ispeed = Math.floor(-osTop / 5);
         document.body.scrollTop = document.documentElement.scrollTop =
           osTop + ispeed;
-        isTop = true;
         if (osTop === 0) {
           clearInterval(timer);
         }

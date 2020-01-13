@@ -1,12 +1,19 @@
 <template>
   <div class="paginator">
     <ul>
-      <li @click="jump(cur_page-1)">
-        <img src="../../assets/img/left.png" alt>
+      <li @click="jump(cur_page - 1)">
+        <img src="../../assets/img/left.png" alt />
       </li>
-      <li v-for="i in pages" :key="i" :class="i==cur_page?'active':''" @click="jump(i)">{{ i }}</li>
+      <li
+        v-for="i in pages"
+        :key="i"
+        :class="i == cur_page ? 'active' : ''"
+        @click="jump(i)"
+      >
+        {{ i }}
+      </li>
       <li @click="jump(cur_page + 1)">
-        <img src="../../assets/img/right.png" alt>
+        <img src="../../assets/img/right.png" alt />
       </li>
       <label>共{{ total_page }}页 {{ total }}条数据</label>
     </ul>
@@ -14,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     cur_page: Number,
@@ -54,7 +62,8 @@ export default {
       }
       // 返回整个页码组
       return ret;
-    }
+    },
+    ...mapGetters(["isPager"])
   },
   methods: {
     jump(num) {
@@ -70,6 +79,9 @@ export default {
         return;
       }
       this.$emit("jump", num);
+      setTimeout(() => {
+        this.$store.dispatch("getPager", !this.isPager);
+      }, 200);
     }
   }
 };
@@ -101,6 +113,7 @@ export default {
     img {
       width: 30px;
       height: 30px;
+      padding: 5px;
     }
   }
   .active {

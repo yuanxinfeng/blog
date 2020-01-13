@@ -1,5 +1,5 @@
 <template>
-  <div :class="['app-main',!isRightBar?'no-rightbar':'']">
+  <div :class="['app-main', !isRightBar ? 'no-rightbar' : '']">
     <router-view></router-view>
   </div>
 </template>

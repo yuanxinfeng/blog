@@ -3,7 +3,7 @@
     <div class="about-me">
       <h2 class="about-title">关于我</h2>
       <div class="avatar">
-        <img src="../../assets/img/zan.png">
+        <img src="../../assets/img/zan.png" />
       </div>
       <div class="ab_con">
         <p>网名：墨子有点冷</p>
