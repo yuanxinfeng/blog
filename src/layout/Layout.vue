@@ -36,6 +36,7 @@ export default {
   position: relative;
   .main-container {
     overflow: hidden;
+    min-height: 200px;
     @media only screen and (min-width: 960px) {
       & {
         padding: 0 40px 0 40px !important;
