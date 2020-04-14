@@ -1,11 +1,19 @@
+<!--
+ * @Description: 
+ * @Author: Jasper
+ * @Github: https://github.com/yuanxinfeng
+ * @Date: 2019-05-15 10:58:18
+ * @LastEditors: Jasper
+ * @LastEditTime: 2020-04-14 14:43:42
+ -->
 <template>
   <footer>
     <div class="container">
       <div class="copyright">
         <p>
-          Copyright © 2018-2019
+          Copyright © 2018-2020
           <a href="https://yuanxinfeng.xyz" target="_blank">YuanXinFeng</a>.
-          当前呈现版本 1.02.17
+          当前呈现版本 1.02.18
           <a href="http://www.beian.miit.gov.cn" target="_blank"
             >鲁ICP备20001365号-1</a
           >
