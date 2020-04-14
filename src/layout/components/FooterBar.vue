@@ -1,11 +1,3 @@
-<!--
- * @Description: 
- * @Author: Jasper
- * @Github: https://github.com/yuanxinfeng
- * @Date: 2019-05-15 10:58:18
- * @LastEditors  : Jasper
- * @LastEditTime : 2020-01-13 16:55:21
- -->
 <template>
   <footer>
     <div class="container">
@@ -14,6 +6,9 @@
           Copyright © 2018-2019
           <a href="https://yuanxinfeng.xyz" target="_blank">YuanXinFeng</a>.
           当前呈现版本 1.02.17
+          <a href="http://www.beian.miit.gov.cn" target="_blank"
+            >鲁ICP备20001365号-1</a
+          >
         </p>
       </div>
       <div class="online-time">
