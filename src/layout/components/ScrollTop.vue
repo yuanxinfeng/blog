@@ -3,8 +3,8 @@
  * @Author: Jasper
  * @Github: https://github.com/yuanxinfeng
  * @Date: 2019-05-20 13:50:49
- * @LastEditors  : Jasper
- * @LastEditTime : 2020-01-13 09:16:36
+ * @LastEditors: Jasper
+ * @LastEditTime: 2020-04-17 14:09:12
  -->
 <template>
   <div class="c-back-top" v-if="topBtn" @click="c_ScrollTop">返回顶部</div>
@@ -28,12 +28,16 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("scroll", this.scrollHandler);
+    document
+      .getElementsByClassName("main-container")[0]
+      .addEventListener("scroll", this.scrollHandler);
   },
   methods: {
     scrollHandler() {
       this.topBtn = false;
-      let top = document.body.scrollTop || document.documentElement.scrollTop;
+      let top =
+        document.getElementsByClassName("main-container")[0].scrollTop ||
+        document.documentElement.scrollTop;
       if (top > 200) {
         this.topBtn = true;
       } else {
@@ -44,10 +48,12 @@ export default {
       let timer = null;
       timer = setInterval(function() {
         let osTop =
-          document.body.scrollTop || document.documentElement.scrollTop;
+          document.getElementsByClassName("main-container")[0].scrollTop ||
+          document.documentElement.scrollTop;
         let ispeed = Math.floor(-osTop / 5);
-        document.body.scrollTop = document.documentElement.scrollTop =
-          osTop + ispeed;
+        document.getElementsByClassName(
+          "main-container"
+        )[0].scrollTop = document.documentElement.scrollTop = osTop + ispeed;
         if (osTop === 0) {
           clearInterval(timer);
         }
@@ -55,7 +61,9 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener("scroll", this.scrollHandler);
+    document
+      .getElementsByClassName("main-container")[0]
+      .removeEventListener("scroll", this.scrollHandler);
   }
 };
 </script>

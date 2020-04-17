@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: Jasper
+ * @Github: https://github.com/yuanxinfeng
+ * @Date: 2019-05-15 09:27:43
+ * @LastEditors: Jasper
+ * @LastEditTime: 2020-04-17 14:02:27
+ -->
 <template>
   <div class="layout">
     <header-bar></header-bar>
@@ -33,15 +41,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .layout {
+  height: 100%;
   position: relative;
   .main-container {
-    overflow: hidden;
-    min-height: 200px;
-    @media only screen and (min-width: 960px) {
-      & {
-        padding: 0 40px 0 40px !important;
-      }
-    }
+    overflow: auto;
+    height: calc(100vh - 80px - 64px);
+  }
+}
+@media screen and (max-width: 960px) {
+  .main-container {
+    height: calc(100vh - 100px - 54px) !important;
   }
 }
 </style>

@@ -61,7 +61,7 @@ $nav_hoverfontcolor: rgb(47, 177, 216);
   border-bottom: 1px solid #fff !important;
 }
 .app_header {
-  position: fixed;
+  position: relative;
   width: 100%;
   line-height: 64px;
   height: 64px;

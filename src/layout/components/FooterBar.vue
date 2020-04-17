@@ -4,7 +4,7 @@
  * @Github: https://github.com/yuanxinfeng
  * @Date: 2019-05-15 10:58:18
  * @LastEditors: Jasper
- * @LastEditTime: 2020-04-14 14:43:42
+ * @LastEditTime: 2020-04-17 13:31:33
  -->
 <template>
   <footer>
@@ -13,7 +13,7 @@
         <p>
           Copyright © 2018-2020
           <a href="https://yuanxinfeng.xyz" target="_blank">YuanXinFeng</a>.
-          当前呈现版本 1.02.18
+          当前呈现版本 1.02.19
           <a href="http://www.beian.miit.gov.cn" target="_blank"
             >鲁ICP备20001365号-1</a
           >
@@ -61,7 +61,7 @@ footer {
   background: #f7f7f7;
   color: #666;
   width: 100%;
-  height: 220px;
+  height: 80px;
   display: table;
   position: relative;
   .copyright {
