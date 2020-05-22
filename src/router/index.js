@@ -90,11 +90,19 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
     // 跳转路由 把移动端的导航初始化
     store.dispatch("getMobileOpenNav", false);
-    if (_hmt) {
-        if (to.path) {
-            _hmt.push(["_trackPageview", "/#" + to.fullPath]);
-        }
-    }
+    setTimeout(() => {
+        var _hmt = _hmt || [];
+        (function () {
+            //每次执行前，先移除上次插入的代码
+            document.getElementById("baidu_tj") &&
+                document.getElementById("baidu_tj").remove();
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2ff41b2a46b0870d1efd2e6dc99a0395";
+            hm.id = "baidu_tj";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    }, 0);
     next();
 });
 
