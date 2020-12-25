@@ -14,7 +14,7 @@
           Copyright © 2018-2020
           <a href="https://yuanxinfeng.xyz" target="_blank">YuanXinFeng</a>.
           当前呈现版本 1.02.19
-          <a href="http://www.beian.miit.gov.cn" target="_blank"
+          <a href="http://beian.miit.gov.cn" target="_blank"
             >鲁ICP备20001365号-1</a
           >
         </p>
